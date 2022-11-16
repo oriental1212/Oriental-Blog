@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oriental.backend.dao.SortDao">
+    <update id="updateSort">
+        update blog_sort set sortdescription = #{sortdescription} where sortname = #{sortname}
+    </update>
+    <delete id="deleteSortByName">
+        delete from blog_sort where sortname = #{sortname}
+    </delete>
+
+    <select id="allSortName" resultType="java.lang.String">
+        select sortname from blog_sort;
+    </select>
+
+    <select id="allSort" resultType="com.oriental.backend.pojo.Sort">
+        select * from blog_sort;
+    </select>
+
+    <select id="findSortNameById" resultType="java.lang.String">
+        select sortname from blog_sort where sortid=#{id};
+    </select>
+
+</mapper>

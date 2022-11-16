@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oriental.backend.dao.CommentDao">
+    <delete id="deleteByCommentidInt">
+        delete from blog_comment where commentid = #{commentid}
+    </delete>
+
+
+    <select id="selectAllComment" resultMap="selectAllCommentresult">
+        select * from blog_comment
+    </select>
+    <resultMap id="selectAllCommentresult" type="com.oriental.backend.pojo.Comment">
+        <result property="commentDate" column="comment_date" javaType="java.util.Date"/>
+    </resultMap>
+
+    <select id="selectCommentByName" resultMap="selectCommentByname">
+        select * from blog_comment where commentcontent like concat('%',#{commentcontent},'%')
+    </select>
+
+    <select id="selectAllCount" resultType="java.lang.Integer">
+        select count(commentid) from blog_comment
+    </select>
+
+    <resultMap id="selectCommentByname" type="com.oriental.backend.pojo.Comment">
+        <result property="commentDate" column="comment_date" javaType="java.util.Date"/>
+    </resultMap>
+</mapper>

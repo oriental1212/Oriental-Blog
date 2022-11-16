@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oriental.backend.dao.ArticleDao">
+    <insert id="insertArticle">
+        insert into blog_article(userid, articletitle, article_date, sortid) values (#{id},#{newarticle.articletitle},#{time},#{newarticle.sortid})
+    </insert>
+
+    <delete id="deleteByArticletitleInt">
+        delete from blog_article where articletitle = #{articlename}
+    </delete>
+
+    <select id="allArticle" resultMap="allArticleresult">
+        select * from blog_article;
+    </select>
+
+    <select id="selectArticleNameById" resultType="java.lang.String">
+        select articletitle from blog_article where articleid = #{articleid}
+    </select>
+
+    <select id="selectArticleIdByDate" resultType="java.lang.Integer">
+        select articleid from blog_article where article_date = #{time}
+    </select>
+
+    <select id="selectArticleTitleByTime" resultType="java.lang.String">
+        select articletitle from blog_article where article_date = #{time}
+    </select>
+
+    <select id="selectAllCount" resultType="java.lang.Integer">
+        select count(articletitle) from blog_article
+    </select>
+
+    <resultMap id="allArticleresult" type="com.oriental.backend.pojo.Article">
+        <result property="articleDate" column="article_date" javaType="java.util.Date"/>
+    </resultMap>
+
+</mapper>

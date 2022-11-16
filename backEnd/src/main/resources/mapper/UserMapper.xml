@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oriental.backend.dao.UserDao">
+    <insert id="insertUser">
+        insert into blog_user (username,userpassword) values (#{username},#{userpassword});
+    </insert>
+    <update id="updateUserByID">
+        update blog_user
+        set username = #{user.username},useremail = #{user.useremail},userpassword = #{user.userpassword}
+        where userid = #{user.userid}
+    </update>
+    <select id="getUser" resultType="com.oriental.backend.pojo.User">
+        select * from blog_user where username = #{username} and userpassword = #{userpassword};
+    </select>
+    <select id="selectUserByName" resultType="com.oriental.backend.pojo.User">
+        select * from blog_user where username = #{username}
+    </select>
+    <select id="selectUsernameById" resultType="java.lang.Integer">
+        select userid from blog_user where username = #{username}
+    </select>
+</mapper>
